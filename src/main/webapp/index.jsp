@@ -1,54 +1,71 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
-<title>consult</title>
-<style>
-    table, td {
-    border-width: 2;
-    border-collapse: collapse;
-
-    border: 2px solid black ;
-        background-color: azure;
-    }
-    #table1{
-    width:80%;
-
-    }
-    #left{
-    width: 70%;
-    }
-</style>
-</head>
-<body>
-<h2>Hello World!!!</h2>
-<table   id="table1">
-    <tr>
-        <td align="center" id="left">
-            <h4>first line of the table</h4>
-        </td>
-        <td align="center" id="right">
-            <h4>second line of the table</h4>
-        </td>
-    </tr>
-</table>
-<ol>
-    <li>line1</li>
-    <li>line2</li>
-    <li>line3</li>
-     <li>line4</li>
-</ol>
-<br><br>
-<form method="get" action="index">
-<input type="text" name="login">
-<input type="submit" value="Поехали!">
-</form>
-</body>
-
- <h2 align="center">Пользователь не найден.</h2><br><br>
-
-        <form method="get" action="login">
-            <input type="submit" value="Вернуться назад">
-        </form>
+<%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 
-</html>
+<!DOCTYPE html>
+
+<t:consAppTmpt>
+
+        <jsp:attribute name="title">
+            <title>Главная</title>
+        </jsp:attribute>
+
+    <jsp:body>
+        <h2>Consultations app</h2>
+
+
+<%--        fast login--%>
+<%--        <form method="get" action="loginServletPage">--%>
+<%--            <label>login--%>
+<%--                <input type="text" name="login">--%>
+<%--            </label><br>--%>
+<%--            <label>password--%>
+<%--                <input type="text" name="password">--%>
+<%--            </label>--%>
+<%--            <input class="btn btn-secondary" type="submit" value="Войти">--%>
+<%--        </form>--%>
+
+        <div class="fadeIn first" align="center">
+            <img src="images/BachMonogram.jpg" width="100" id="icon"  alt="User's Icon" />
+        </div>
+        <div id="login">
+            <div class="container">
+                <div id="login-row" class="row justify-content-center align-items-center">
+                    <div id="login-column" class="col-md-6">
+                        <div id="login-box" class="col-md-12">
+                            <form id="login-form" class="form" action="authorise" method="get">
+                                <h3 class="text-center text-info">Login</h3>
+                                <div class="form-group">
+                                    <label for="username" class="text-info">Username:</label><br>
+                                    <input type="text" name="username" id="username" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label for="password" class="text-info">Password:</label><br>
+                                    <input type="text" name="password" id="password" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label for="remember-me" class="text-info"><span>Remember me</span> <span><input id="remember-me" name="remember-me" type="checkbox"></span></label><br>
+                                    <input type="submit" name="submit" class="btn btn-info btn-md" value="submit">
+                                </div>
+<%--                                <div id="register-link" class="text-right">--%>
+<%--                                    <a href="http://www.ya.ru" class="text-info">Yandex here</a>--%>
+<%--                                </div>--%>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </jsp:body>
+
+
+
+</t:consAppTmpt>
+
+
+
+
+
+

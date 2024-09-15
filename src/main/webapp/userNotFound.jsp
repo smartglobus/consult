@@ -3,11 +3,13 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>error - user not found</title>
+        <title>errror</title>
     </head>
     <body>
-        <div align="center">
-            <h2 >Пользователь не найден.</h2><br>
+    <%@ page import="java.util.Date" %>
+    Hello! Time now:  <%= new Date() %>
+        <div align="center" style="font-size:25px; color:teal">
+           <h2> <%= request.getAttribute("username") %></h2><br>
             <form  action="login">
                 <input type="submit" value="Назад">
             </form>
