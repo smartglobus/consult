@@ -49,8 +49,8 @@ public class AppEngine {
         System.out.println("Checking midnight update time...      time now is: " + LocalDateTime.now().format(DateTimeFormatter.ISO_TIME));
     }
 
-    public static int getMyMonthLimit(String student, long theDay) {
-        long theDayStart = LocalDate.ofInstant(Instant.ofEpochMilli(theDay), ZoneId.systemDefault())
+    public static boolean isMyMonthLimitOver(String student, long start) {
+        long theDayStart = LocalDate.ofInstant(Instant.ofEpochMilli(start), ZoneId.systemDefault())
                 .atStartOfDay().atZone(ZoneId.systemDefault()).toInstant().toEpochMilli();
 
         String monthLimit = DataBase.INSTANCE.settings.findKey("monthLimit").getValue();
@@ -63,11 +63,11 @@ public class AppEngine {
         }
         List<Consultation> myCons = DataBase.INSTANCE.consultations.select(c -> (c.student.equals(student) &&
                 c.start >= (theDayStart - TimeUnit.DAYS.toMillis(29)) && c.start < (theDayStart + TimeUnit.DAYS.toMillis(1))));
-        return lim - myCons.size();
+        return myCons.size() >= lim;
     }
 
-    public static int getMyDayLimit(String student, long theDay) {
-        long theDayStart = LocalDate.ofInstant(Instant.ofEpochMilli(theDay), ZoneId.systemDefault())
+    public static boolean isMyDayLimitOver(String student, long start) {
+        long theDayStart = LocalDate.ofInstant(Instant.ofEpochMilli(start), ZoneId.systemDefault())
                 .atStartOfDay().atZone(ZoneId.systemDefault()).toInstant().toEpochMilli();
 
         String dayLimit = DataBase.INSTANCE.settings.findKey("dayLimit").getValue();
@@ -80,7 +80,7 @@ public class AppEngine {
         }
         List<Consultation> myCons = DataBase.INSTANCE.consultations.select(c -> (c.student.equals(student) &&
                 c.start >= theDayStart && c.start < (theDayStart + TimeUnit.DAYS.toMillis(1))));
-        return lim - myCons.size();
+        return myCons.size() >= lim;
     }
 
     public static long todayStartOfDay() {

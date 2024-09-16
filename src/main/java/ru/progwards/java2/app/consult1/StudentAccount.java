@@ -26,11 +26,32 @@ public class StudentAccount extends HttpServlet {
                 c.student.equals(user) && c.start >= todayStartOfDay()));
         myConsultations.sort(Comparator.comparing(c -> c.start));
 
+        String dayLimit = DataBase.INSTANCE.settings.findKey("dayLimit").getValue();
+        int dayLim;
+        try {
+            dayLim = Integer.parseInt(dayLimit);
+        } catch (Exception e) {
+            dayLim = DefaultBasicSettings.DEFAULT_DAY_LIMIT;
+        }
+
+        String monthLimit = DataBase.INSTANCE.settings.findKey("monthLimit").getValue();
+        int monthLim;
+        try {
+            monthLim = Integer.parseInt(monthLimit);
+        } catch (Exception e) {
+            monthLim = DefaultBasicSettings.DEFAULT_MONTH_LIMIT;
+        }
+
         List<DataBase.Users.User> mentors = DataBase.INSTANCE.users.select(u -> u.is_mentor);
         Map<String, DataBase.Users.User> mentorsMap = new HashMap<>();
         for (DataBase.Users.User u : mentors) mentorsMap.put(u.login, u);
         req.setAttribute("mentorsMap", mentorsMap);
         req.setAttribute("consultations", myConsultations);
+        req.setAttribute("dayLimit", dayLim);
+        req.setAttribute("monthLimit", monthLim);
+
+//        resp.setStatus(HttpServletResponse.SC_FORBIDDEN);
+//        resp.sendRedirect("/index.jsp");
         req.getRequestDispatcher("/account_student.jsp").forward(req, resp);
 
     }

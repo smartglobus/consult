@@ -13,6 +13,9 @@
     <jsp:body>
         <%--@elvariable id="appFormat" type="java"--%>
         <div class="container">
+            <div class="text-md-start  m-1 fs-6 fw-semibold">Лимит на количество консультаций в день: ${dayLimit}</div>
+            <div class="text-md-start  m-1 fs-6 fw-semibold">Лимит на количество консультаций в месяц: ${monthLimit}</div>
+
             <div class="text-md-center  m-1 fs-3 fw-semibold">Мои текущие записи</div>
             <br>
             <table class="table table-striped">

@@ -11,6 +11,8 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
 
+import static ru.progwards.java2.app.consult1.AppEngine.*;
+
 @WebServlet("/consultation/add")
 public class ConsultationAdd extends HttpServlet {
     @Override
@@ -36,10 +38,16 @@ public class ConsultationAdd extends HttpServlet {
             return;
         }
 
-
-//        System.out.println("ConsultationAdd mentor: " + mentor);
-//        System.out.println("ConsultationAdd start: " + keySet[1]);
-//        System.out.println("ConsultationAdd comment: " + comment);
+        if (isMyDayLimitOver(student, start)) {
+            req.setAttribute("error-description", "Превышен дневной лимит консультаций.");
+            req.getRequestDispatcher("/error.jsp").forward(req, resp);
+            return;
+        }
+        if (isMyMonthLimitOver(student, start)) {
+            req.setAttribute("error-description", "Превышен месячный лимит консультаций.");
+            req.getRequestDispatcher("/error.jsp").forward(req, resp);
+            return;
+        }
 
         Consultation removed = DataBase.INSTANCE.consultations.remove(new DataBase.Consultations.Key(mentor, start));
         if (removed != null) {

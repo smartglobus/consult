@@ -10,7 +10,7 @@
 
     <jsp:body>
         <%--@elvariable id="appFormat" type="java"--%>
-        <h2>Settings</h2>
+
         <div class="text-md-center  m-1 fs-3 fw-semibold">Settings</div>
         <br><br>
         <div class="container">

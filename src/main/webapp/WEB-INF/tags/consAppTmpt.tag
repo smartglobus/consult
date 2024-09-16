@@ -1,12 +1,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ tag description="tag for consult app" pageEncoding="utf-8" %>
 <%@ attribute name="title" fragment="true" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 
 <html>
 <head>
     <jsp:invoke fragment="title"/>
-
+    <%--@elvariable id="appFormat" type="java"--%>
     <c:set var="nameOn" value="${pageContext.session.getAttribute('auth')}"/>
 
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
@@ -30,6 +31,10 @@
                         </c:if>
                     </div>
                     <div class="ms-auto d-flex"> <!-- Теперь этот блок сместится вправо -->
+                        <c:set var="now" value="<%= System.currentTimeMillis() %>"/>
+                        <a class="nav-link me-5 my-2 fst-italic fw-lighter">Сегодня
+                        <fmt:formatDate value="${appFormat.getDate(now)}" type="date" dateStyle="short"/>
+                        </a>
                         <c:if test="${!''.equals(nameOn)}">
                             <a class="nav-link m-1 fs-5 fw-semibold">${nameOn}</a>
                             <a class="nav-link m-2" href="${pageContext.request.contextPath}/logoff">Logout</a>

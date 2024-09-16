@@ -11,7 +11,8 @@
           <title>my account</title>
     </jsp:attribute>
     <jsp:body>
-        <h2>Consultations</h2>
+
+        <div class="text-md-center  m-1 fs-3 fw-semibold">Consultations</div>
         <br><br>
 <%--                длина списка ${consultations.size()}--%>
 <%--        mentor = ${pageContext.request.getAttribute("mentor")}--%>
@@ -23,10 +24,11 @@
         <c:set scope="page" var="mnt" value="${mentor}"/>
         <%--@elvariable id="appFormat" type="java"--%>
         <div class="container">
+            <div class="text-md-center  m-1 fs-3 fw-semibold">Мои текущие записи</div>
             <div class="row justify-content-between">
                 <div class="col-8">
                     <form method="get" action="${pageContext.request.contextPath}/account/mentor">
-                        <label for="mentorSelect"> Наставник ${pageContext.request.getAttribute("mentor")}
+                        <label for="mentorSelect"> Наставник
                             <c:choose>
                                 <c:when test="${mnt=='all'}">
                                     <select id="mentorSelect" class="form form-select" name="mentor">
