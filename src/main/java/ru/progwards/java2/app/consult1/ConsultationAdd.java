@@ -40,6 +40,8 @@ public class ConsultationAdd extends HttpServlet {
 
         if (isMyDayLimitOver(student, start)) {
             req.setAttribute("error-description", "Превышен дневной лимит консультаций.");
+//            resp.setStatus(HttpServletResponse.SC_FORBIDDEN);
+//            resp.setHeader("Destination","/error.jsp");
             req.getRequestDispatcher("/error.jsp").forward(req, resp);
             return;
         }

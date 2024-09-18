@@ -69,7 +69,7 @@
                                 </c:forEach>
                             </select>
                         </label>
-                        <input type="submit" value="go">
+                        <input class="btn btn-primary" type="submit" value="Вперёд">
                     </form>
                 </div>
             </div>

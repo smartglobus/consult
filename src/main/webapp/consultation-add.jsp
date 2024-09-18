@@ -8,6 +8,7 @@
         <title>book consultation</title>
     </jsp:attribute>
     <jsp:body>
+        <%--@elvariable id="appFormat" type="java"--%>
         <div class="container">
             <div class="text-md-center  m-1 fs-5 fw-semibold">Выберите время консультации с ${mentor}</div>
             <br>

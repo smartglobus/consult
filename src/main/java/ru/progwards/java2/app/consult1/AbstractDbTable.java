@@ -80,6 +80,7 @@ public abstract class AbstractDbTable<K, V> implements IDbTable<K, V> {
     public void saveAll() throws IOException {
         synchronized (this) {
             String json = new Gson().toJson(getAll());
+            Files.createDirectories(Path.of(DataBase.DB_PATH));
             Path path = Path.of(DataBase.DB_PATH + getTableName());
 //            System.out.println(path.toAbsolutePath());
             Files.writeString(Path.of(DataBase.DB_PATH + getTableName()), json);
