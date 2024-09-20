@@ -39,7 +39,7 @@
                             <a class="nav-link m-1 fs-5 fw-semibold">${nameOn}</a>
                             <a class="nav-link m-2" href="${pageContext.request.contextPath}/logoff">Logout</a>
                             <a class="nav-link ms-1" href="${pageContext.request.contextPath}/user-changes.jsp">
-                                <img src="${pageContext.request.contextPath}/images/profile_change.png" style="width: 30px" alt="add new user">
+                                <img src="${pageContext.request.contextPath}/images/profile_change.png" style="width: 30px" alt="password change">
                             </a>
                         </c:if>
                     </div>

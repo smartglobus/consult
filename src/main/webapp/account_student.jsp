@@ -61,7 +61,7 @@
                 <div class="col">
                     <form  method="get"
                           action="${pageContext.request.contextPath}/consultation/free">
-                        <label>Записаться на консультацию
+                        <label class="text-md-start  mb-2 fs-6 fw-semibold">Записаться на новую консультацию
                             <select required class="form-select" name="mentor">
                                 <option selected disabled value="">Выберите наставника</option>
                                 <c:forEach var="mentor" items="${mentorsMap.keySet()}">

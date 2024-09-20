@@ -17,11 +17,8 @@ public class AppContextListener implements ServletContextListener {
     public void contextInitialized(ServletContextEvent sce) {
         sce.getServletContext().setAttribute("appFormat", new AppOutFormater());
 
-
         update();
 
-//        sce.getServletContext().setAttribute("GoHomeHour", SettingsEnum.GoHomeHour.getSetting_name());
-        // запуск метода
         new Thread(new Runnable() {
             int dayOfWeek = LocalDate.now().getDayOfWeek().getValue();
             @Override

@@ -21,7 +21,6 @@ public class MyAccount extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
         String user = (String) session.getAttribute("auth");
-        String filter = req.getParameter("filter");//all, past, today, future (т.е. с сегодня до 7-го дня)
         String is_mentor = (String) session.getAttribute("is_mentor");
 
 
