@@ -8,11 +8,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+
+import static ru.progwards.java2.app.consult1.IDbTable.hashSha256;
 
 @WebServlet("/user_new")
 public class UserNew extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.setCharacterEncoding("utf-8");
         String login = req.getParameter("login");
         String password = req.getParameter("password");
         String name = req.getParameter("name");
@@ -43,7 +47,12 @@ public class UserNew extends HttpServlet {
             return;
         }
 
-        User newUser = new User(login, password, name, isMentor, image);
+        String securePassword = hashSha256(password);
+        System.out.println("securePassword: "+ securePassword);
+
+        String encSafeName = new String(name.getBytes(StandardCharsets.ISO_8859_1), StandardCharsets.UTF_8);
+
+        User newUser = new User(login, securePassword, encSafeName, isMentor, image);
         if (!DataBase.INSTANCE.users.exists(login)){
             DataBase.INSTANCE.users.put(newUser);
         }else {
@@ -51,6 +60,8 @@ public class UserNew extends HttpServlet {
             req.getRequestDispatcher("/error.jsp").forward(req, resp);
             return;
         }
-        resp.sendRedirect("/students");
+
+        if (isMentor) resp.sendRedirect("/mentors");
+        else resp.sendRedirect("/students");
     }
 }

@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
+import static ru.progwards.java2.app.consult1.IDbTable.hashSha256;
+
 @WebServlet(urlPatterns = "/authorise")
 public class AuthoriseServlet extends HttpServlet {
 
@@ -28,7 +30,9 @@ public class AuthoriseServlet extends HttpServlet {
             req.getRequestDispatcher("/error.jsp").forward(req, resp);
             return;
         }
-        if (!password.equals(user.getPassword())) {
+
+        String securePassword = hashSha256(password);
+        if (securePassword == null || !securePassword.equals(user.getPassword())) {
             req.setAttribute("error-description", "Введённый пароль для Пользователя с именем " + username
                     + "\n не совпадает с сохранённым в системе.");
             req.getRequestDispatcher("/error.jsp").forward(req, resp);

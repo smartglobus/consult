@@ -20,8 +20,8 @@ public class UserRemove extends HttpServlet {
         }
 // надо ли удалять все консультации ученика или наставника? Или только будущие, для освобождения слотов?
         // надо ли удалять все элементы расписания наставника, или только будущие?
-        if (user.is_mentor) resp.sendRedirect("/mentor");
-        else resp.sendRedirect("/student");
+        if (user.is_mentor) resp.sendRedirect("/mentors");
+        else resp.sendRedirect("/students");
 
     }
 }
