@@ -73,5 +73,4 @@
             </div>
         </div>
     </jsp:body>
-
 </t:consAppTmpt>
